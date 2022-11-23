@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Voeg plant toe</title>
+    <link rel="stylesheet" type="text/css" href="/css/plants.css"/>
+</head>
+<body>
+
+<h1>Voeg een plant toe</h1>
+
+<form th:action="@{/plants/new}" method="post" th:object="${plant}">
+    <table>
+        <tr>
+            <td>Naam</td>
+            <td><input type="text" th:field="*{name}"></td>
+        </tr>
+        <tr>
+            <td>Zaaitijd</td>
+            <td><input type="text" th:field="*{zaaiTijd}"></td>
+        </tr>
+        tr>
+        <td>Standplaats</td>
+        <td><input type="text" th:field="*{standPlaats}"></td>
+        </tr>
+        tr>
+        <td>Verzorging</td>
+        <td><input type="text" th:field="*{verzorging}"></td>
+        </tr>
+        tr>
+        <td>Goede buren</td>
+        <td><input type="text" th:field="*{goedeBuren}"></td>
+        </tr>
+        tr>
+        <td>Slechte buren</td>
+        <td><input type="text" th:field="*{slechteBuren}"></td>
+        </tr>
+        tr>
+        <td>Locatie in het bos</td>
+        <td><input type="text" th:field="*{locatie}"></td>
+        </tr>
+    </table>
+
+    <input type="submit" value="Sla plant op">
+</form>
+
+</body>
+</html>

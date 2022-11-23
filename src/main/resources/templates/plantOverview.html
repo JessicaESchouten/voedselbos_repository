@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Overzicht van de planten</title>
+    <link rel="stylesheet" type="text/css" href="/css/plants.css"/>
+</head>
+<body>
+<h1>Overzicht van de planten</h1>
+<table>
+    <tr>
+        <th>naam</th>
+        <th>zaaitijd</th>
+        <th>standplaats</th>
+        <th>verzorging</th>
+        <th>goede buren</th>
+        <th>slechte buren</th>
+        <th>locatie bos</th>
+    </tr>
+    <tr th:each="book : ${allBooks}">
+        <td th:text="${plant.name}"></td>
+        <td th:text="${plant.standPlaats}"></td>
+        <td th:text="${plant.verzorging}"></td>
+        <td th:text="${plant.goedeBuren}"></td>
+        <td th:text="${plant.slechteBuren}"></td>
+        <td th:text="${plant.locatie}"></td>
+    </tr>
+</table>
+
+<a th:href="@{/plants/new}">Voeg een nieuwe plant toe</a>
+</body>
+</html>
