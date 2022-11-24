@@ -10,6 +10,7 @@
 <h1>Voeg een plant toe</h1>
 
 <form th:action="@{/plants/new}" method="post" th:object="${plant}">
+    <input type="hidden" th:field="*{plantId}">
     <table>
         <tr>
             <td>Naam</td>
@@ -19,23 +20,23 @@
             <td>Zaaitijd</td>
             <td><input type="text" th:field="*{zaaiTijd}"></td>
         </tr>
-        tr>
+        <tr>
         <td>Standplaats</td>
         <td><input type="text" th:field="*{standPlaats}"></td>
         </tr>
-        tr>
+        <tr>
         <td>Verzorging</td>
         <td><input type="text" th:field="*{verzorging}"></td>
         </tr>
-        tr>
+        <tr>
         <td>Goede buren</td>
         <td><input type="text" th:field="*{goedeBuren}"></td>
         </tr>
-        tr>
+        <tr>
         <td>Slechte buren</td>
         <td><input type="text" th:field="*{slechteBuren}"></td>
         </tr>
-        tr>
+        <tr>
         <td>Locatie in het bos</td>
         <td><input type="text" th:field="*{locatie}"></td>
         </tr>

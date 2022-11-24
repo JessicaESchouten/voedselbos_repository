@@ -7,7 +7,10 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+
+import java.util.Optional;
 
 /**
  * Auteur Jessica Schouten.
@@ -32,6 +35,18 @@ public class FoodForestController {
         return "plantOverview";
     }
 
+    @GetMapping("/plants/edit/{plantId}")
+    protected String showEditBookForm(@PathVariable("plantId") Long plantId, Model model) {
+        Optional<Plant> plant = plantRepository.findById(plantId);
+
+        if (plant.isPresent()) {
+            model.addAttribute("plant", plant.get());
+            return "plantForm";
+        }
+
+        return "redirect:/plants/all";
+    }
+
     @GetMapping("/plants/new")
     protected String showNewPlantForm(Model model) {
         model.addAttribute("plant", new Plant());
@@ -43,6 +58,17 @@ public class FoodForestController {
         if (!result.hasErrors()) {
             plantRepository.save(plantToBeSaved);
         }
+        return "redirect:/plants/all";
+    }
+
+    @GetMapping("/plants/delete/{plantId}")
+    protected String deletePlant(@PathVariable("plantId") Long plantId) {
+        Optional<Plant> plant = plantRepository.findById(plantId);
+
+        if (plant.isPresent()) {
+            plantRepository.delete(plant.get());
+        }
+
         return "redirect:/plants/all";
     }
 

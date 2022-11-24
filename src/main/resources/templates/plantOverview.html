@@ -16,14 +16,23 @@
         <th>goede buren</th>
         <th>slechte buren</th>
         <th>locatie bos</th>
+        <th>delete</th>
+        <th>edit</th>
+        <th>stocknr</th>
     </tr>
-    <tr th:each="book : ${allBooks}">
+    <tr th:each="plant : ${allPlants}">
         <td th:text="${plant.name}"></td>
         <td th:text="${plant.standPlaats}"></td>
         <td th:text="${plant.verzorging}"></td>
         <td th:text="${plant.goedeBuren}"></td>
         <td th:text="${plant.slechteBuren}"></td>
         <td th:text="${plant.locatie}"></td>
+        <td><a th:href="@{/plants/delete/{plantId}(plantId=${plant.plantId})}">Delete</a></td>
+        <td><a th:href="@{/plants/edit/{plantId}(plantId=${plant.plantId})}">Edit</a></td>
+        <td>
+            <span th:text="${plant.numberOfAvailableStocknrs}"></span>
+            <a th:href="@{/stock/new/{plantId}(plantId=${plant.plantId})}">Inkoop</a>
+        </td>
     </tr>
 </table>
 

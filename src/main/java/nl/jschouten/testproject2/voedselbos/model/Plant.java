@@ -1,8 +1,14 @@
 package nl.jschouten.testproject2.voedselbos.model;
 
+import lombok.Getter;
+import lombok.Setter;
+import org.springframework.web.bind.annotation.GetMapping;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import java.util.List;
 
 /**
  * Auteur Jessica Schouten.
@@ -10,7 +16,7 @@ import javax.persistence.Id;
  * Beschrijft de eigenschappen van planten in een voedselbos.
  */
 
-@Entity
+@Entity @Getter @Setter
 public class Plant {
 
     @Id
@@ -25,67 +31,18 @@ public class Plant {
     private String slechteBuren;
     private String locatie;
 
-    public Long getPlantId() {
-        return plantId;
+        @OneToMany(mappedBy = "plant")
+        private List<Stock> stocknrs;
+
+        public int getNumberOfAvailableStocknrs() {
+            int count = 0;
+
+            for (Stock stock : stocknrs) {
+                if (stock.getAvailable()) {
+                    count++;
+                }
+            }
+            return count;
+        }
     }
 
-    public void setPlantId(Long plantId) {
-        this.plantId = plantId;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getZaaiTijd() {
-        return zaaiTijd;
-    }
-
-    public void setZaaiTijd(String zaaiTijd) {
-        this.zaaiTijd = zaaiTijd;
-    }
-
-    public String getStandPlaats() {
-        return standPlaats;
-    }
-
-    public void setStandPlaats(String standPlaats) {
-        this.standPlaats = standPlaats;
-    }
-
-    public String getVerzorging() {
-        return verzorging;
-    }
-
-    public void setVerzorging(String verzorging) {
-        this.verzorging = verzorging;
-    }
-
-    public String getGoedeBuren() {
-        return goedeBuren;
-    }
-
-    public void setGoedeBuren(String goedeBuren) {
-        this.goedeBuren = goedeBuren;
-    }
-
-    public String getSlechteBuren() {
-        return slechteBuren;
-    }
-
-    public void setSlechteBuren(String slechteBuren) {
-        this.slechteBuren = slechteBuren;
-    }
-
-    public String getLocatie() {
-        return locatie;
-    }
-
-    public void setLocatie(String locatie) {
-        this.locatie = locatie;
-    }
-}
