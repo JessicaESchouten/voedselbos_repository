@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Overzicht van de verzorgingskenmerken</title>
+  <link rel="stylesheet" type="text/css" href="/css/plants.css"/>
+</head>
+<body>
+
+<h1>Overzicht van de verzorgingskenmerken</h1>
+
+<table>
+  <tr>
+    <th>Opkweken</th>
+    <th>Verspenen</th>
+    <th>Bemesten</th>
+    <th></th>
+  </tr>
+  <tr th:each="verzorging : ${allVerzorgingsKenmerken}">
+    <td th:text="${verzorging.opkweken}"></td>
+    <td th:text="${verzorging.verspenen}"></td>
+    <td th:text="${verzorging.bemesten}"></td>
+    <td></td>
+  </tr>
+  <tr>
+    <form th:action="@{/verzorgingsKenmerken/new}" method="post" th:object="${newVerzorging}">
+      <td><input type="text" th:field="*{opkweken}"></td>
+      <td><input type="text" th:field="*{verspenen}"></td>
+      <td><input type="text" th:field="*{bemesten}"></td>
+      <td><input type="submit" value="Sla op"></td>
+    </form>
+  </tr>
+</table>
+
+</body>
+</html>

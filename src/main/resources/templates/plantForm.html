@@ -16,30 +16,36 @@
             <td>Naam</td>
             <td><input type="text" th:field="*{name}"></td>
         </tr>
-        <tr>
-            <td>Zaaitijd</td>
-            <td><input type="text" th:field="*{zaaiTijd}"></td>
-        </tr>
-        <tr>
-        <td>Standplaats</td>
-        <td><input type="text" th:field="*{standPlaats}"></td>
-        </tr>
-        <tr>
-        <td>Verzorging</td>
-        <td><input type="text" th:field="*{verzorging}"></td>
-        </tr>
-        <tr>
-        <td>Goede buren</td>
-        <td><input type="text" th:field="*{goedeBuren}"></td>
-        </tr>
-        <tr>
-        <td>Slechte buren</td>
-        <td><input type="text" th:field="*{slechteBuren}"></td>
-        </tr>
-        <tr>
-        <td>Locatie in het bos</td>
-        <td><input type="text" th:field="*{locatie}"></td>
-        </tr>
+
+        <td>
+            <select th:field="*{verzorgingsKenmerken}" multiple>
+                <option th:each="verzorging : ${allVerzorgingskenmerken}" th:value="${verzorging.verzorgingId}" th:text="${verzorging.displayName}"></option>
+            </select>
+        </td>
+<!--        <tr>-->
+<!--            <td>Zaaitijd</td>-->
+<!--            <td><input type="text" th:field="*{zaaiTijd}"></td>-->
+<!--        </tr>-->
+<!--        <tr>-->
+<!--        <td>Standplaats</td>-->
+<!--        <td><input type="text" th:field="*{standPlaats}"></td>-->
+<!--        </tr>-->
+<!--        <tr>-->
+<!--        <td>Verzorging</td>-->
+<!--        <td><input type="text" th:field="*{verzorging}"></td>-->
+<!--        </tr>-->
+<!--        <tr>-->
+<!--        <td>Goede buren</td>-->
+<!--        <td><input type="text" th:field="*{goedeBuren}"></td>-->
+<!--        </tr>-->
+<!--        <tr>-->
+<!--        <td>Slechte buren</td>-->
+<!--        <td><input type="text" th:field="*{slechteBuren}"></td>-->
+<!--        </tr>-->
+<!--        <tr>-->
+<!--        <td>Locatie in het bos</td>-->
+<!--        <td><input type="text" th:field="*{locatie}"></td>-->
+<!--        </tr>-->
     </table>
 
     <input type="submit" value="Sla plant op">

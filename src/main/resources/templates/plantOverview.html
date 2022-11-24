@@ -19,14 +19,17 @@
         <th>delete</th>
         <th>edit</th>
         <th>stocknr</th>
+        <th>Voorraad</th>
     </tr>
     <tr th:each="plant : ${allPlants}">
-        <td th:text="${plant.name}"></td>
-        <td th:text="${plant.standPlaats}"></td>
-        <td th:text="${plant.verzorging}"></td>
-        <td th:text="${plant.goedeBuren}"></td>
-        <td th:text="${plant.slechteBuren}"></td>
-        <td th:text="${plant.locatie}"></td>
+        <td><a th:href="@{/plants/details/{name}(name=${plant.name})}"  th:text="${plant.name}">Naam</a></td>
+        <td th:text="${plant.verzorgingsKenmerkenDisplayString}"></td>
+<!--        <td th:text="${plant.zaaiTijd}"></td>-->
+<!--        <td th:text="${plant.standPlaats}"></td>-->
+<!--        <td th:text="${plant.verzorging}"></td>-->
+<!--        <td th:text="${plant.goedeBuren}"></td>-->
+<!--        <td th:text="${plant.slechteBuren}"></td>-->
+<!--        <td th:text="${plant.locatie}"></td>-->
         <td><a th:href="@{/plants/delete/{plantId}(plantId=${plant.plantId})}">Delete</a></td>
         <td><a th:href="@{/plants/edit/{plantId}(plantId=${plant.plantId})}">Edit</a></td>
         <td>

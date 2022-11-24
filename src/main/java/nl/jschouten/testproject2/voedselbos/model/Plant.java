@@ -4,11 +4,9 @@ import lombok.Getter;
 import lombok.Setter;
 import org.springframework.web.bind.annotation.GetMapping;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import java.util.List;
+import java.util.Set;
 
 /**
  * Auteur Jessica Schouten.
@@ -16,7 +14,8 @@ import java.util.List;
  * Beschrijft de eigenschappen van planten in een voedselbos.
  */
 
-@Entity @Getter @Setter
+@Entity
+@Getter @Setter
 public class Plant {
 
     @Id
@@ -24,25 +23,36 @@ public class Plant {
     private Long plantId;
 
     private String name;
-    private String zaaiTijd;
-    private String standPlaats;
-    private String verzorging;
-    private String goedeBuren;
-    private String slechteBuren;
-    private String locatie;
+//    private String zaaiTijd;
+//    private String standPlaats;
+//    private String verzorging;
+//    private String goedeBuren;
+//    private String slechteBuren;
+//    private String locatie;
+    @ManyToMany
+    private Set<Verzorging> verzorgingsKenmerken;
+    @OneToMany(mappedBy = "plant")
+    private List<Stock> stocknrs;
 
-        @OneToMany(mappedBy = "plant")
-        private List<Stock> stocknrs;
+    public String getVerzorgingsKenmerkenDisplayString() {
+        StringBuilder builder = new StringBuilder();
 
-        public int getNumberOfAvailableStocknrs() {
-            int count = 0;
-
-            for (Stock stock : stocknrs) {
-                if (stock.getAvailable()) {
-                    count++;
-                }
-            }
-            return count;
+        for (Verzorging verzorging : verzorgingsKenmerken) {
+            builder.append(verzorging).append(", ");
         }
+
+        return builder.toString();
     }
+
+    public int getNumberOfAvailableStocknrs() {
+        int count = 0;
+
+        for (Stock stock : stocknrs) {
+            if (stock.getAvailable()) {
+                count++;
+            }
+        }
+        return count;
+    }
+}
 

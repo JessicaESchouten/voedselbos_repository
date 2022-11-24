@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Plant Details</title>
+  <link rel="stylesheet" type="text/css" href="/css/plants.css"/>
+</head>
+<body>
+<h1>Details van plant: <span th:text="${plant.name}"></span></h1>
+
+<table>
+  <tr>
+    <td>Naam</td>
+    <td th:text="${plant.name}"></td>
+  </tr>
+  <tr th:each="verzorging : ${plant.verzorgingsKenmerken}">
+    <td>Verzorging</td>
+    <td th:text="${plant.verzorging}"></td>
+    <td th:text="${verzorging.displayName}"></td>
+  </tr>
+<!--  <tr>-->
+<!--    <td>Zaaitijd</td>-->
+<!--    <td th:text="${plant.zaaiTijd}"></td>-->
+<!--  </tr>-->
+<!--  <tr>-->
+<!--    <td>Standplaats</td>-->
+<!--    <td th:text="${plant.standPlaats}"></td>-->
+<!--  </tr>-->
+<!--  <tr>-->
+<!--    <td>Verzoring</td>-->
+<!--    <td th:text="${plant.verzorging}"></td>-->
+<!--  </tr>-->
+<!--  <tr>-->
+<!--    <td>Goede buren</td>-->
+<!--    <td th:text="${plant.goedeBuren}"></td>-->
+<!--  </tr>-->
+<!--  <tr>-->
+<!--    <td>Slechte buren</td>-->
+<!--    <td th:text="${plant.slechteBuren}"></td>-->
+<!--  </tr>-->
+<!--  <tr>-->
+<!--    <td>Locatie</td>-->
+<!--    <td th:text="${plant.locatie}"></td>-->
+<!--  </tr>-->
+</table>
+
+<table>
+  <tr>
+    <th>stockId</th>
+    <th>Beschikbaar</th>
+  </tr>
+  <tr th:each="stock : ${plant.stocknrs}">
+    <td th:text="${stock.stockId}"></td>
+    <td th:text="${stock.available}"></td>
+    <td><a th:href="@{/plants/delete/{plantId}(plantId=${plant.plantId})}">Delete</a></td>
+    <td><a th:href="@{/plants/edit/{plantId}(plantId=${plant.plantId})}">Edit</a></td>
+  </tr>
+</table>
+
+</body>
+</html>
