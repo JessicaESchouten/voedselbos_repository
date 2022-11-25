@@ -30,14 +30,14 @@ public class Plant {
 //    private String slechteBuren;
 //    private String locatie;
     @ManyToMany
-    private Set<Verzorging> verzorgingsKenmerken;
+    private Set<Verzorging> verzorgingKenmerken;
     @OneToMany(mappedBy = "plant")
     private List<Stock> stocknrs;
 
-    public String getVerzorgingsKenmerkenDisplayString() {
+    public String getVerzorgingKenmerkenDisplayString() {
         StringBuilder builder = new StringBuilder();
 
-        for (Verzorging verzorging : verzorgingsKenmerken) {
+        for (Verzorging verzorging : verzorgingKenmerken) {
             builder.append(verzorging).append(", ");
         }
 

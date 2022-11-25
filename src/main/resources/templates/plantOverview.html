@@ -1,10 +1,11 @@
 <!DOCTYPE html>
+
 <html lang="en" xmlns:th="https://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
+
+<head th:replace="fragments/general :: baseHeader(~{:: title})">
     <title>Overzicht van de planten</title>
-    <link rel="stylesheet" type="text/css" href="/css/plants.css"/>
 </head>
+
 <body>
 <h1>Overzicht van de planten</h1>
 <table>
@@ -23,7 +24,7 @@
     </tr>
     <tr th:each="plant : ${allPlants}">
         <td><a th:href="@{/plants/details/{name}(name=${plant.name})}"  th:text="${plant.name}">Naam</a></td>
-        <td th:text="${plant.verzorgingsKenmerkenDisplayString}"></td>
+        <td th:text="${plant.verzorgingKenmerkenDisplayString}"></td>
 <!--        <td th:text="${plant.zaaiTijd}"></td>-->
 <!--        <td th:text="${plant.standPlaats}"></td>-->
 <!--        <td th:text="${plant.verzorging}"></td>-->
@@ -40,5 +41,9 @@
 </table>
 
 <a th:href="@{/plants/new}">Voeg een nieuwe plant toe</a>
+<div th:replace="fragments/general :: footer"></div>
+<div th:replace="fragments/general :: bottomScripts"></div>
+
 </body>
+
 </html>

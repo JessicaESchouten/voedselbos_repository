@@ -32,6 +32,7 @@ public class PlantController {
 //        @GetMapping({"/plants/all", "/"})
     }
 
+    @GetMapping({"/plants/all", "/"})
     protected String showPlantOverview(Model model) {
         model.addAttribute("allPlants", plantRepository.findAll());
 
@@ -44,6 +45,7 @@ public class PlantController {
 
         if (plant.isPresent()) {
             model.addAttribute("plant", plant.get());
+            model.addAttribute("allVerzorgingKenmerken", verzorgingRepository.findAll());
             return "plantForm";
         }
 
@@ -64,7 +66,7 @@ public class PlantController {
     @GetMapping("/plants/new")
     protected String showNewPlantForm(Model model) {
         model.addAttribute("plant", new Plant());
-        model.addAttribute("allVerzorgingsKenmerken", verzorgingRepository.findAll());
+        model.addAttribute("allVerzorgingKenmerken", verzorgingRepository.findAll());
         return "plantForm";
     }
 
